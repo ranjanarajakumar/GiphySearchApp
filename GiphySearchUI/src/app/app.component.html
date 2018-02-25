@@ -1,35 +1,78 @@
 <!--The content below is only a placeholder and can be replaced.-->
+<html>
+<body>
 <div style="text-align:center">
-  <h1>
+  <h1 class="textformat">
     Welcome to Giphy Search App!
   </h1>
 </div>
-<div>
-  <table>
+<div class="filter">
+  <table class="filter">
     <tr>
-      <td>User Name</td>
-      <td><input [id]="txtUserId"></td>
+      <td>User Name*</td>
+      <td><input type="text" [(ngModel)]="userName"></td>
     </tr>
     <tr>
-      <td>Search By</td>
+      <td>Search By*</td>
       <td><input type="text" [(ngModel)]="searchKeyWord"> </td>
     </tr>
     <tr>
-      <td><img src="/assets/images/searchButton.png" (click)="displayImages()" width="60" height="60"></td>
-      <td><img src="/assets/images/resetbutton.jpg" width="60" height="60"></td>
+      <td>Page Size*</td>
+      <td><input type="text" [(ngModel)]="pageSize" value="10"> </td>
+    </tr>
+    <tr>
+      <td>
+        <button [hidden]="isImageLoading" (click)="displayImages()" >Search</button>
+        <!--<img src="/assets/images/searchbutton.png" [hidden]="isImageLoading" (click)="displayImages()" width="60" height="60">-->
+        <img src="/assets/images/loadingicon.gif" [hidden]="!isImageLoading" width="50" height="50">
+      </td>
+      <td>
+        <button  (click)="reset()" >Reset</button>
+        <!--<img src="/assets/images/resetbutton.jpg"(click)="reset()" width="60" height="60">-->
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" class="mandatory">(* Mandatory Field)</td>
+    </tr>
+    <tr>
+      <td colspan="2" class="mandatory">
+        <label class ="mandatory" [hidden]="isMandatoryFilled">Mandatory field is missing!</label></td>
     </tr>
   </table>
 </div>
-<div [id]="imageList">
-  <table>
+
+
+<!--<pagination [totalItems]="totalItems"-->
+            <!--[boundaryLinks]="true"-->
+            <!--(pageChanged)="onPageChanged($event)"-->
+            <!--[itemsPerPage]="itemsPerPage"-->
+            <!--[maxSize]="maxSize"-->
+            <!--[(ngModel)] = "currentPage"-->
+            <!--class="pagination-sm pull-right"-->
+<!--&gt;-->
+<!--</pagination>-->
+<div [hidden]="!response.data">
+  <div class="text-right">Total Record Count: {{totalCount}}</div>
+  <table class="results">
+      <thead>
+        <td><img src="/assets/images/imageicon.png" width="60" height="60"></td>
+        <td>Title</td>
+        <td>File Type</td>
+        <td>File Size</td>
+        <td>Add To Favourites</td>
+      </thead>
       <tr *ngFor="let item of response.data;">
-          <td>
-              <img [src]="item.images['fixed_height_still']['url']"
-                   [width]="item.images['fixed_height_still']['width']"
-                   [height]="item.images['fixed_height_still']['height']" >
+          <td align="centre">
+            <img [src]="item.images['downsized']['url']" [width]="item.images['downsized']['width']" [height]="item.images['downsized']['height']" >
           </td>
+          <td>{{item.title}}</td>
+          <td>{{item.type}}</td>
+          <td>{{item.images['downsized']['size']}}</td>
+          <td><img [src]="item.favouriteIcon" (click)="addToFavourite(item)"  width="40" height="40"></td>
       </tr>
   </table>
 
 </div>
-
+<h4>Copyright ©2018 Ranjana Paing Su</h4>
+</body>
+</html>

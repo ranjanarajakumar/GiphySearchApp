@@ -17,6 +17,6 @@ export class ImageDetailModel {
   import_datetime: string;
   trending_datetime: string;
   title: string;
+  favouriteIcon?: string;
   images?: Map<string, Map<string, string>>;
-  //images?: ImagesModel;
 }

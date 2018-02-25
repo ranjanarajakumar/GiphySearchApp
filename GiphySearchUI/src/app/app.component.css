@@ -1,0 +1,66 @@
+body {
+  background-color: deeppink;
+}
+
+table.filter {
+  align-content: center;
+  align-self: center;
+  width: 50%;
+  text-align: center;
+}
+
+table.results {
+  border-collapse: collapse;
+  width: 100%;
+}
+table, th, td {
+  background-color: lightpink;
+  border: 2px solid black;
+  text-align: center;
+  border-bottom: 2px solid #ddd;
+}
+
+.mandatory {
+  text-align: left;
+  color: darkblue;
+}
+
+.textformat {
+  text-align: center;
+  color: white;
+  font-style: oblique;
+}
+
+.filter {
+  align: center;
+}
+
+
+.pagination{
+  margin-top:5px;
+}
+
+.page-item.disabled .page-link,
+.pagination li.disabled .page-link,
+.page-item.disabled .pagination li a,
+.pagination li .page-item.disabled a,
+.pagination li.disabled a{
+  color: #888;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: rgba(0, 0, 0, .2);
+}
+
+.page-item.active .page-link,
+.pagination li.active .page-link,
+.pagination li.active a{
+  color: #167495;
+  background-color: #cfd8dc;
+  border-color: #ddd;
+}
+
+.page-link,
+.pagination li a{
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: #FFFFFF;
+}
